@@ -1,9 +1,13 @@
 import reportDAO
 import csv
 import json
+from configparser import ConfigParser
 
-PATH_EXPORT_CSV = "/home/franklin/Documentos/csv/channel_resources.csv"
-PATH_EXPORT_JSON = "/home/franklin/Documentos/json/channel_resources.json"
+config = ConfigParser()
+config.read("config/serverConfig.cfg")
+
+PATH_EXPORT_CSV = config["EXPORT"]["path_csv"]
+PATH_EXPORT_JSON = config["EXPORT"]["path_json"]
 
 def main():
     list_result = reportDAO.getData()
