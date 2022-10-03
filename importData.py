@@ -1,6 +1,9 @@
+#!/usr/bin/python
+# -- coding: utf-8 --
 import reportDAO
 import csv
 import json
+import pandas as pd
 from configparser import ConfigParser
 
 config = ConfigParser()
@@ -13,14 +16,15 @@ def main():
     list_result = reportDAO.getData()
     list_data_csv = []
 
-    fieldnames_csv = ['Canal', 'Recurso', 'Tipo', 'Peso(bytes)']
     for row in list_result:
-        list_data_csv.append({'Canal': row['channel_name'],'Recurso': row['title'],'Tipo': row['kind'],'Peso(bytes)': row['file_size']})
+        channel_name = str(row['channel_name']).replace(";",",")
+        title = str(row['title']).replace(";",",")
+        kind = str(row['kind']).replace(";",",")
+        list_data_csv.append({'Canal': channel_name,'Recurso': title,'Tipo': kind,'Peso(bytes)': row['file_size']})
      
-    with open(PATH_EXPORT_CSV, 'w', encoding='UTF8', newline='') as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames_csv)
-        writer.writeheader()
-        writer.writerows(list_data_csv)
+    df = pd.DataFrame(list_data_csv)
+    df.reset_index(drop=True)
+    df.to_csv(PATH_EXPORT_CSV,sep=';',encoding='utf-8-sig',index=False)
 
     json_object = json.dumps(list_result, indent=4)
     with open(PATH_EXPORT_JSON, "w") as outfile:
