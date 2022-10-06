@@ -4,6 +4,7 @@ import reportDAO
 import csv
 import json
 import pandas as pd
+import os
 from configparser import ConfigParser
 
 config = ConfigParser()
@@ -15,6 +16,12 @@ PATH_EXPORT_JSON = config["EXPORT"]["path_json"]
 def main():
     list_result = reportDAO.getData()
     list_data_csv = []
+
+    if( os.path.exists(PATH_EXPORT_CSV) ):
+        os.remove(PATH_EXPORT_CSV)
+        
+    if( os.path.exists(PATH_EXPORT_JSON) ):
+        os.remove(PATH_EXPORT_JSON)
 
     for row in list_result:
         channel_name = str(row['channel_name']).replace(";",",")
