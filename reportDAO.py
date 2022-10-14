@@ -1,11 +1,12 @@
 import sqlite3
 from sqlite3 import Error
-from configparser import ConfigParser
+## from configparser import ConfigParser
 
-config = ConfigParser()
-config.read("config/serverConfig.cfg")
+## config = ConfigParser()
+## config.read("config/serverConfig.cfg")
 
-DB_PATH_KOLIBRI = config["SQLITE"]["path"]
+## DB_PATH_KOLIBRI = config["SQLITE"]["path"]
+DB_PATH_KOLIBRI = "/ubuntu/home/.kolibri/db.sqlite3"
 
 def getData():
     conn = None

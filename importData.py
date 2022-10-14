@@ -5,13 +5,15 @@ import csv
 import json
 import pandas as pd
 import os
-from configparser import ConfigParser
+## from configparser import ConfigParser
 
-config = ConfigParser()
-config.read("config/serverConfig.cfg")
+## config = ConfigParser()
+## config.read("config/serverConfig.cfg")
 
-PATH_EXPORT_CSV = config["EXPORT"]["path_csv"]
-PATH_EXPORT_JSON = config["EXPORT"]["path_json"]
+## PATH_EXPORT_CSV = config["EXPORT"]["path_csv"]
+## PATH_EXPORT_JSON = config["EXPORT"]["path_json"]
+PATH_EXPORT_CSV = "/var/www/html/data/csv/channel_resources.csv"
+PATH_EXPORT_JSON = "/var/www/html/data/csv/channel_resources.json"
 
 def main():
     list_result = reportDAO.getData()
