@@ -6,7 +6,7 @@ from sqlite3 import Error
 ## config.read("config/serverConfig.cfg")
 
 ## DB_PATH_KOLIBRI = config["SQLITE"]["path"]
-DB_PATH_KOLIBRI = "/ubuntu/home/.kolibri/db.sqlite3"
+DB_PATH_KOLIBRI = "/home/ubuntu/.kolibri/db.sqlite3"
 
 def getData():
     conn = None
